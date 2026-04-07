@@ -12,6 +12,9 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/597d82e6ff.js" crossorigin="anonymous"></script>
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -28,6 +31,7 @@
         }">
 
     <div class="fixed inset-0 bg-gray-900 opacity-50 z-20 sm:hidden"
+        {{-- para evitar que se muestre el parpadeo al cargar la página --}}
         style="display:none;"
         x-show="sidebarOpen"
         x-on:click="sidebarOpen = false">
