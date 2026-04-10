@@ -7,10 +7,11 @@
             'active' => request()->routeIs('admin.dashboard')
         ],
         [
-            'icon' => 'fa-solid fa-gauge',
-            'name' => 'Compra',
-            'route' => '#',
-            'active' => request()->routeIs('admin.compra')
+            // familias de productos
+            'name' => 'Familias',
+            'icon' => 'fa-solid fa-box-open',
+            'route' => route('admin.families.index'),
+            'active' => request()->routeIs('admin.families.*')
         ]
     ];
 @endphp
