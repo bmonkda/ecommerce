@@ -47,7 +47,17 @@
     <div class="p-4 sm:ml-64 mt-14">
         <div>
 
-            @include('layouts.partials.admin.breadcrumb')
+            <div class="flex justify-between items-center">
+                
+                @include('layouts.partials.admin.breadcrumb')
+
+                @isset($action)
+                    <div>
+                        {{$action}}
+                    </div>
+                @endisset
+
+            </div>
 
             <div class="p-4 border-1 border-default border-dashed rounded-base">
                 
