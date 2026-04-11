@@ -87,7 +87,24 @@ class FamilyController extends Controller
      */
     public function destroy(Family $family)
     {
+        if ($family->categories()->count() > 0) {
+            session()->flash('swal', [
+                'title' => '¡Error!',
+                'text' => 'No se puede eliminar esta familia porque tiene categorías asociadas.',
+                'icon' => 'error'
+            ]);
+
+            return redirect()->route('admin.families.edit', $family);
+        }
+        
         $family->delete();
+        
+        session()->flash('swal', [
+            'title' => '¡Bien hecho!',
+            'text' => 'La familia de producto ha sido eliminada correctamente.',
+            'icon' => 'success'
+        ]);
+        
         return redirect()->route('admin.families.index');
     }
 }
