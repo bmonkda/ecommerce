@@ -8,15 +8,17 @@
         'route' => route('admin.families.index'),
     ],
     [
-        'name' => 'Nuevo',
+        'name' => $family->name,
     ],
 ]">
 
     <div class="card">
 
-        <form action="{{route('admin.families.store')}}" method="post">
+        <form action="{{route('admin.families.update', $family)}}" method="post">
             
             @csrf
+
+            @method('put')
 
             <div class="mb-4">
 
@@ -24,17 +26,18 @@
                 <x-input class="w-full" 
                     name="name" 
                     placeholder="Ingrese nombre de la familia del producto"
-                    value="{{old('name')}}"/>
+                    value="{{old('name', $family->name)}}"/>
                 
             </div>
 
             <div class="flex justify-end">
-                <x-button>Guardar</x-button>
+                <x-button>Actualizar</x-button>
             </div>
         
         </form>
 
     </div>
+
 
 
 </x-admin-layout>
