@@ -15,6 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::orderBy('id', 'desc')
+                    ->with('family')
                     ->paginate(10);
         return view('admin.categories.index', compact('categories'));
     }
@@ -104,7 +105,7 @@ class CategoryController extends Controller
         }
 
         $category->delete();
-        
+
         session()->flash('swal', [
             'title' => '¡Bien hecho!',
             'text' => 'La categoría ha sido eliminada correctamente.',
