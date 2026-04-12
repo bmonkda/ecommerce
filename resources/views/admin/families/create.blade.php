@@ -18,9 +18,11 @@
             
             @csrf
 
+            <x-validation-errors class="mb-4"></x-validation-errors>
+
             <div class="mb-4">
 
-                <x-label>Nombre</x-label>
+                <x-label class="mb-2">Nombre</x-label>
                 <x-input class="w-full" 
                     name="name" 
                     placeholder="Ingrese nombre de la familia del producto"
