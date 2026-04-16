@@ -80,6 +80,13 @@
         </script>
     @endif
 
+    {{-- Mantener Livewire a la escucha del evento 'swal' para mostrar notificaciones este es para componentes de Livewire --}}
+    <script>
+        Livewire.on('swal', data => {
+            Swal.fire(data[0]);
+        });
+    </script>
+
 </body>
 
 </html>
