@@ -2,10 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    use HasFactory;
+
+    // asignación masiva
+    protected $fillable = ['sku', 'name', 'description', 'image_path', 'price', 'subcategory_id'];
+
     //Relación uno a muchos inversa product - subcategory
     public function subcategory()
     {

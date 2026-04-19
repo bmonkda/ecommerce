@@ -2,10 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Option extends Model
 {
+    use HasFactory;
+
+    // asignación masiva
+    protected $fillable = [
+        'name',
+        'type',
+    ];
+
     // Relación muchos a muchos option - products
     public function products()
     {

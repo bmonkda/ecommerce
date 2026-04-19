@@ -2,10 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Variant extends Model
 {
+    use HasFactory;
+
+    // asignación masiva
+    protected $fillable = ['sku', 'image_path', 'product_id'];
+
     //Relación uno a muchos inversa variant - product
     public function product()
     {
