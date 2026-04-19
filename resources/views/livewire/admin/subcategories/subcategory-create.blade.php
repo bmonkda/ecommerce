@@ -58,7 +58,9 @@
         </div>
 
         <div class="flex justify-end">
-            <x-button>Guardar</x-button>
+            <x-button>
+                Crear producto
+            </x-button>
         </div>
 
     </form>
