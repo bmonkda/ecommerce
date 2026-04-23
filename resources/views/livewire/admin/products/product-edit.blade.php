@@ -21,7 +21,6 @@
                     src="{{ $image ? $image->temporaryUrl() : Storage::url($productEdit['image_path']) }}" 
                     alt="">
         </figure>
-        {{ Storage::url($productEdit['image_path']) }}
 
         <x-validation-errors class="mb-4" />
 
