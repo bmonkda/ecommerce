@@ -50,13 +50,13 @@ class ProductCreate extends Component
         });
     }
 
-    public function UpdatedFamilyId()
+    public function updatedFamilyId()
     {
         $this->category_id = '';
         $this->product['subcategory_id'] = '';
     }
 
-    public function UpdatedCategoryId()
+    public function updatedCategoryId()
     {
         $this->product['subcategory_id'] = '';
     }

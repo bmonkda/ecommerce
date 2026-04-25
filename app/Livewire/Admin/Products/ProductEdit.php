@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Products;
 use App\Models\Category;
 use App\Models\Family;
 use App\Models\Subcategory;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -46,13 +47,13 @@ class ProductEdit extends Component
         });
     }
 
-    public function UpdatedFamilyId()
+    public function updatedFamilyId()
     {
         $this->category_id = '';
         $this->productEdit['subcategory_id'] = '';
     }
 
-    public function UpdatedCategoryId()
+    public function updatedCategoryId()
     {
         $this->productEdit['subcategory_id'] = '';
     }
@@ -75,7 +76,41 @@ class ProductEdit extends Component
         return collect([]);
     }
 
-    
+    public function store()
+    {
+        $this->validate([
+                'image' => 'nullable|image|max:1024',
+                'productEdit.sku' => 'required|unique:products,sku,' . $this->product->id,
+                'productEdit.name' => 'required|max:255',
+                'productEdit.description' => 'nullable',
+                'productEdit.price' => 'required|numeric|min:0',
+                'productEdit.subcategory_id' => 'required|exists:subcategories,id',
+            ]);
+
+            if ($this->image){
+                // eliminar la imagen anterior si se ha subido una nueva imagen
+                Storage::delete($this->productEdit['image_path']);
+                // guardar la nueva imagen
+                $this->productEdit['image_path'] = $this->image->store('products');
+            }
+
+            $this->product->update($this->productEdit);
+
+            // $this->dispatch('swal', [
+            //     'icon' => 'success',
+            //     'title' => '¡Producto actualizado!',
+            //     'tetx' => 'Producto se ha actualizado correctamente.',
+            // ]);
+
+            session()->flash('swal', [
+                'icon' => 'success',
+                'title' => '¡Producto actualizado!',
+                'tetx' => 'Producto se ha actualizado correctamente.',
+            ]);
+
+            return redirect()->route('admin.products.edit', $this->product);
+
+    }
 
     public function render()
     {
