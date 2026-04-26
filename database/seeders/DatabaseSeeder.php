@@ -27,7 +27,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        $this->call([FamilySeeder::class]);
+        $this->call([
+            FamilySeeder::class,
+            OptionSeeder::class,
+        ]);
 
         Product::factory(150)->create();
     }
