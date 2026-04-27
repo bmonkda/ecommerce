@@ -99,13 +99,13 @@ class ProductEdit extends Component
             // $this->dispatch('swal', [
             //     'icon' => 'success',
             //     'title' => '¡Producto actualizado!',
-            //     'tetx' => 'Producto se ha actualizado correctamente.',
+            //     'text' => 'Producto se ha actualizado correctamente.',
             // ]);
 
             session()->flash('swal', [
                 'icon' => 'success',
                 'title' => '¡Producto actualizado!',
-                'tetx' => 'Producto se ha actualizado correctamente.',
+                'text' => 'Producto se ha actualizado correctamente.',
             ]);
 
             return redirect()->route('admin.products.edit', $this->product);
