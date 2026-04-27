@@ -7,6 +7,12 @@
             'active' => request()->routeIs('admin.dashboard')
         ],
         [
+            'icon' => 'fa-solid fa-cog',
+            'name' => 'Opciones',
+            'route' => route('admin.options.index'),
+            'active' => request()->routeIs('admin.optiones.index')
+        ],
+        [
             // familias de productos
             'name' => 'Familias',
             'icon' => 'fa-solid fa-box-open',
