@@ -8,6 +8,7 @@ use Livewire\Component;
 class ManageOptions extends Component
 {
     public $options;
+    public $openModal = true;
 
     public function mount()
     {

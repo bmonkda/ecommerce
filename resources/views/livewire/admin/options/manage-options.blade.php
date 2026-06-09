@@ -3,9 +3,16 @@
     <section class="rounded-lg bg-white shadow-lg">
 
         <header class="border-b border-gray-300 px-6 py-2">
-            <h1 class="text-lg font-semibold text-gray-700">
-                Opciones
-            </h1>
+            
+            <div class="flex justify-between">            
+                <h1 class="text-lg font-semibold text-gray-700">
+                    Opciones
+                </h1>
+
+                <x-button wire:click="$set('openModal', true)">
+                    Nuevo
+                </x-button>
+            </div>
 
         </header>
 
@@ -58,5 +65,62 @@
         </div>
 
     </section>
-    
+
+    {{-- Modal --}}
+    <x-dialog-modal wire:model="openModal">
+
+        <x-slot name="title">
+            Crear nueva opción
+        </x-slot>
+
+        <x-slot name="content">
+           
+            <div class="grid grid-cols-2 gap-6 mb-4">
+
+                <div>
+
+                    <x-label class="mb-1">
+                        Nombre
+                    </x-label>
+
+                    <x-input class="w-full" 
+                        placeholder="Por ejemplo: Tamaño, Color"/>
+
+                </div>
+
+                <div>
+
+                    <x-label class="mb-1">
+                        Tipo
+                    </x-label>
+
+                    <x-select class="w-full">
+                        <option value="1">Texto</option>
+                        <option value="2">Color</option>
+                    </x-select>
+
+                <div>
+
+                </div>
+
+            </div>
+
+            <div class="flex items-center">
+                <hr class="flex-1">
+
+                <span class="mx-4">
+                    Valores
+                </span>
+
+                <hr class="flex-1">
+            </div>
+
+        </x-slot>
+
+        <x-slot name="footer">
+        </x-slot>
+
+    </x-dialog-modal>
+
+
 </div>
