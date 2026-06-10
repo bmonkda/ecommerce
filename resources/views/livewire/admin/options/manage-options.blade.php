@@ -117,35 +117,39 @@
                 <hr class="flex-1">
             </div>
 
-            <div class="p-6 rounded-lg border border-gray-200">
-                
-                <div class="grid grid-cols-2 gap-6">
+            @foreach ($newOption['features'] as $index => $feature)
+            
+                <div class="p-6 rounded-lg border border-gray-200">
+                    
+                    <div class="grid grid-cols-2 gap-6">
 
-                    <div>
-                        
-                        <x-label class="mb-1">
-                            Valor
-                        </x-label>
+                        <div>
+                            
+                            <x-label class="mb-1">
+                                Valor
+                            </x-label>
 
-                        <x-input class="w-full" 
-                            placeholder="Ingrese el valor de la opción"/>
+                            <x-input class="w-full" 
+                                placeholder="Ingrese el valor de la opción"/>
 
-                    </div>
+                        </div>
 
-                    <div>
+                        <div>
 
-                        <x-label class="mb-1">
-                            Descripción
-                        </x-label>
+                            <x-label class="mb-1">
+                                Descripción
+                            </x-label>
 
-                        <x-input class="w-full" 
-                            placeholder="Ingrese una descripción"/>
+                            <x-input class="w-full" 
+                                placeholder="Ingrese una descripción"/>
+
+                        </div>
 
                     </div>
 
                 </div>
-
-            </div>
+            
+            @endforeach
 
         </x-slot>
 
