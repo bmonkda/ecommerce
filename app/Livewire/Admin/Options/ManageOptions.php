@@ -8,6 +8,18 @@ use Livewire\Component;
 class ManageOptions extends Component
 {
     public $options;
+
+    public $newOption = [
+        'name' => '',
+        'type' => 1,
+        'features' => [
+            [
+                'name' => '',
+                'value' => ''
+            ]
+        ]
+    ];
+
     public $openModal = true;
 
     public function mount()

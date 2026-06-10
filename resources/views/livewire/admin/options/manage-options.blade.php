@@ -83,7 +83,9 @@
                         Nombre
                     </x-label>
 
-                    <x-input class="w-full" 
+                    <x-input 
+                        wire:model="newOption.name"
+                        class="w-full" 
                         placeholder="Por ejemplo: Tamaño, Color"/>
 
                 </div>
@@ -94,18 +96,18 @@
                         Tipo
                     </x-label>
 
-                    <x-select class="w-full">
+                    <x-select 
+                        wire:model="newOption.type"
+                        class="w-full">
                         <option value="1">Texto</option>
                         <option value="2">Color</option>
                     </x-select>
-
-                <div>
 
                 </div>
 
             </div>
 
-            <div class="flex items-center">
+            <div class="flex items-center mb-4">
                 <hr class="flex-1">
 
                 <span class="mx-4">
@@ -113,6 +115,36 @@
                 </span>
 
                 <hr class="flex-1">
+            </div>
+
+            <div class="p-6 rounded-lg border border-gray-200">
+                
+                <div class="grid grid-cols-2 gap-6">
+
+                    <div>
+                        
+                        <x-label class="mb-1">
+                            Valor
+                        </x-label>
+
+                        <x-input class="w-full" 
+                            placeholder="Ingrese el valor de la opción"/>
+
+                    </div>
+
+                    <div>
+
+                        <x-label class="mb-1">
+                            Descripción
+                        </x-label>
+
+                        <x-input class="w-full" 
+                            placeholder="Ingrese una descripción"/>
+
+                    </div>
+
+                </div>
+
             </div>
 
         </x-slot>
