@@ -117,39 +117,63 @@
                 <hr class="flex-1">
             </div>
 
-            @foreach ($newOption['features'] as $index => $feature)
-            
-                <div class="p-6 rounded-lg border border-gray-200">
-                    
-                    <div class="grid grid-cols-2 gap-6">
+            <div class="mb-4 space-y-4">
+                @foreach ($newOption['features'] as $index => $feature)
+                
+                    <div class="p-6 rounded-lg border border-gray-200 relative"
+                        wire:key="features-{{$index}}">
+                        
+                        <div class="absolute -top-3 px-4 bg-white">
 
-                        <div>
-                            
-                            <x-label class="mb-1">
-                                Valor
-                            </x-label>
-
-                            <x-input class="w-full" 
-                                placeholder="Ingrese el valor de la opción"/>
+                            <button>
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
 
                         </div>
 
-                        <div>
+                        <div class="grid grid-cols-2 gap-6">
 
-                            <x-label class="mb-1">
-                                Descripción
-                            </x-label>
+                            <div>
+                                
+                                <x-label class="mb-1">
+                                    Valor
+                                </x-label>
 
-                            <x-input class="w-full" 
-                                placeholder="Ingrese una descripción"/>
+                                <x-input 
+                                    wire:model="newOption.features.{{ $index }}.value"
+                                    class="w-full" 
+                                    placeholder="Ingrese el valor de la opción"/>
+
+                            </div>
+
+                            <div>
+
+                                <x-label class="mb-1">
+                                    Descripción
+                                </x-label>
+
+                                <x-input 
+                                    wire:model="newOption.features.{{ $index }}.description"
+                                    class="w-full" 
+                                    placeholder="Ingrese una descripción"/>
+
+                            </div>
 
                         </div>
 
                     </div>
+                
+                @endforeach
+            </div>
 
-                </div>
-            
-            @endforeach
+            <div class="flex justify-end">
+                
+                <x-button
+                    wire:click="addFeature">
+                    Agregar valor
+                </x-button>
+
+            </div>
 
         </x-slot>
 
