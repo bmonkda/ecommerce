@@ -97,7 +97,7 @@
                     </x-label>
 
                     <x-select 
-                        wire:model="newOption.type"
+                        wire:model.live="newOption.type"
                         class="w-full">
                         <option value="1">Texto</option>
                         <option value="2">Color</option>
@@ -125,8 +125,8 @@
                         
                         <div class="absolute -top-3 px-4 bg-white">
 
-                            <button>
-                                <i class="fa-solid fa-trash-can"></i>
+                            <button wire:click="removeFeature({{ $index }})">
+                                <i class="fa-solid fa-trash-can text-red-500 hover:text-red-600"></i>
                             </button>
 
                         </div>
@@ -139,10 +139,29 @@
                                     Valor
                                 </x-label>
 
-                                <x-input 
-                                    wire:model="newOption.features.{{ $index }}.value"
-                                    class="w-full" 
-                                    placeholder="Ingrese el valor de la opción"/>
+                                
+
+                                @switch($newOption['type'])
+                                    @case(1)
+                                        <x-input 
+                                            wire:model="newOption.features.{{ $index }}.value"
+                                            class="w-full" 
+                                            placeholder="Ingrese el valor de la opción"/>
+                                        @break
+                                    @case(2)
+                                        <div class="border border-gray-300 rounded-md h-[41.83px] flex items-center justify-between px-3">
+                                            
+                                            {{
+                                                $newOption['features'][$index]['value'] ?: 'Seleccione un color'
+                                            }}
+
+                                            <input type="color"
+                                                wire:model.live="newOption.features.{{ $index }}.value">
+                                        </div>
+                                        @break
+                                    @default
+                                        
+                                @endswitch
 
                             </div>
 
@@ -178,6 +197,11 @@
         </x-slot>
 
         <x-slot name="footer">
+
+            <button class="btn btn-blue" wire:click="addOption">
+                Agregar
+            </button>
+
         </x-slot>
 
     </x-dialog-modal>
