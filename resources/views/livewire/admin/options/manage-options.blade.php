@@ -74,6 +74,8 @@
         </x-slot>
 
         <x-slot name="content">
+
+            <x-validation-errors class="mb-4" />
            
             <div class="grid grid-cols-2 gap-6 mb-4">
 

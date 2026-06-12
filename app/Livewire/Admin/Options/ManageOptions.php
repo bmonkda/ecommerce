@@ -11,7 +11,7 @@ class ManageOptions extends Component
 
     public $newOption = [
         'name' => '',
-        'type' => 2,
+        'type' => 1,
         'features' => [
             [
                 'value' => '',
@@ -20,7 +20,7 @@ class ManageOptions extends Component
         ]
     ];
 
-    public $openModal = true;
+    public $openModal = false;
 
     public function mount()
     {
@@ -57,11 +57,35 @@ class ManageOptions extends Component
                 $rules['newOption.features.' . $index . '.value'] = 'required';
             } else {
                 //color
-                $rules['newOption.features.' . $index . '.value'] = 'required|regex:/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/';
+                $rules['newOption.features.' . $index . '.value'] = 'required|regex:/^#[0-9a-fA-F]{6})$/i';
             }
             
-            $rules['newOption.features.' . $index . '.description'] = 'required';
+            $rules['newOption.features.' . $index . '.description'] = 'required|max:255';
         }
+
+        $this->validate($rules);
+
+        $option = Option::create([
+            'name' => $this->newOption['name'],
+            'type' => $this->newOption['type']
+        ]);
+
+        foreach ($this->newOption['features'] as $feature) {
+            $option->features()->create([
+                'value' => $feature['value'],
+                'description' => $feature['description']
+            ]);
+        }
+
+        $this->options = Option::with('features')->get();
+
+        $this->reset('openModal', 'newOption');
+
+        $this->dispatch('swal', [
+            'icon' => 'success',
+            'title' => 'Bien hecho',
+            'text' => 'La opción se agregó correctamente'
+        ]);
 
     }
 
