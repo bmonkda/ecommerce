@@ -9,7 +9,7 @@
                     Opciones
                 </h1>
 
-                <x-button wire:click="$set('openModal', true)">
+                <x-button wire:click="$set('newOption.openModal', true)">
                     Nuevo
                 </x-button>
             </div>
@@ -67,7 +67,7 @@
     </section>
 
     {{-- Modal --}}
-    <x-dialog-modal wire:model="openModal">
+    <x-dialog-modal wire:model="newOption.openModal">
 
         <x-slot name="title">
             Crear nueva opción
@@ -120,7 +120,7 @@
             </div>
 
             <div class="mb-4 space-y-4">
-                @foreach ($newOption['features'] as $index => $feature)
+                @foreach ($newOption->features as $index => $feature)
                 
                     <div class="p-6 rounded-lg border border-gray-200 relative"
                         wire:key="features-{{$index}}">
@@ -143,7 +143,7 @@
 
                                 
 
-                                @switch($newOption['type'])
+                                @switch($newOption->type)
                                     @case(1)
                                         <x-input 
                                             wire:model="newOption.features.{{ $index }}.value"
